@@ -22,9 +22,9 @@ plt.title(f"precio de {a1} vs {a2}")
 plt.xlabel(a1)
 plt.ylabel(a2)
 
-plt.grid(True, linestile ="--", alpha =0.4)
+plt.grid(True, linestyle ="--", alpha =0.4)
 plt.tight_layout()
-plt.show
+plt.show()
 
 ## empezamos con regresion lineal
 X = df[a1].values
@@ -35,26 +35,25 @@ mX = np.mean(X)
 mY= np.mean(Y)
 
 #calculando sus sumas  de dato real menos la media.
-Sxx = np.sum((X - mean_X) ** 2)
-Sxy = np.sum((X - mean_X) * (Y - mean_Y))
+Sxx = np.sum((X - mX) ** 2)
+Sxy = np.sum((X - mX) * (Y - mY))
 
 # Calcular los coeficientes de la recta de regresión
 b1 = Sxy / Sxx
-b0 = mean_Y - b1 * mean_X
+b0 = mY - b1 * mX
 # Ecuacion de la recta de regresion
-print(f'La ecuacion de la recta de regresion es: Y_est = {b0:.2f} + {b1:.2f} *␣
-↪X ')
+print(f'La ecuacion de la recta de regresion es: Y_est = {b0:.2f} + {b1:.2f} * X')
 y_est = b0 + b1 * X # Y_est = b0 + b1 * X
 
 #grafico con la recta correspondiente
 plt.figure(figsize=(9,6))
-plt.scatter(df['^SPX'], df['AAPL'], alpha=0.6, label="Datos reales")
+plt.scatter(df[a1], df[a2], alpha=0.4, label="Datos reales")
 # Recta de regresión
 plt.plot(X, y_est, linewidth=2.5, label="Recta de regresión", color="red")
 
-plt.title("Precio de AAPL vs SPX")
-plt.xlabel("SPX (^SPX)")
-plt.ylabel("AAPL")
+plt.title(f"precio de {a1} vs {a2}")
+plt.xlabel(a1)
+plt.ylabel(a2)
 plt.grid(True, linestyle="--", alpha=0.4)
 plt.legend()
 plt.tight_layout()
